@@ -432,7 +432,7 @@ def errAbort(msg):
 def checkDate(dateStr):
     " throw error is date is not in format 2020-03-30 "
     if "-" not in dateStr:
-        logging.warn("Found date '%s'. This is an accepted date for GISAID, but not for all other databases. Please consider updating your input files with proper dates. For public health purposes having at least the month is crucial. This script will set the date to June 1st of the same year now, but please fix the input data rather than creating incorrect dates." % dateStr)
+        logging.warning("Found date '%s'. This is an accepted date for GISAID, but not for all other databases. Please consider updating your input files with proper dates. For public health purposes having at least the month is crucial. This script will set the date to June 1st of the same year now, but please fix the input data rather than creating incorrect dates." % dateStr)
         dateStr = dateStr+"-06-01"
 
     year, month, day = dateStr.split("-")
@@ -507,7 +507,7 @@ def readMetaText(fname):
 
         seqId = row[0]
         if seqId in meta:
-            logging.warn("sequence ID '%s' has been seen before. Only read first row." % seqId)
+            logging.warning("sequence ID '%s' has been seen before. Only read first row." % seqId)
             continue
         meta[seqId] = d
 
@@ -1133,7 +1133,7 @@ def metaToSra(meta):
     for seqId, metaDict in meta.items():
         newMeta = OrderedDict()
         #if not "biosample_accession" in metaDict or metaDict["biosample_accession"]=="":
-            #logging.warn("%s has no biosample accession. Please complete the steps up-biosample and " \
+            #logging.warning("%s has no biosample accession. Please complete the steps up-biosample and " \
             #"down-biosample first. The file biosampleAccs.tsv will be created and added automatically "
             #"on the next 'conv' run. Skipping SRA export for now. "
             #"Ignore this warning if you did not plan to submit to SRA." % seqId)
